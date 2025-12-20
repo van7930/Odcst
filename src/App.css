@@ -12,8 +12,8 @@ body {
 .title{
   justify-content: center;
   align-items: center;
-  margin-left:50px;
-  margin-right:60px;
+  margin-left:60px;
+  margin-right:100px;
   font-family:Georgia, 'Times New Roman', Times, serif;
   background-color: rgb(1, 40, 45);
   border-radius: 8px;
@@ -55,7 +55,7 @@ input{
   position:relative;
   display:grid;
   row-gap:6px;
-  margin-right: 60px;
+  margin-right: 80px;
 }
 .lg-box{
   width:275px;
