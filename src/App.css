@@ -55,7 +55,7 @@ input{
   position:relative;
   display:grid;
   row-gap:6px;
-  margin-right:100px;
+  margin-right: 60px;
 }
 .lg-box{
   width:275px;
