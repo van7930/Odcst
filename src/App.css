@@ -1,72 +1,13 @@
-/* Container trung tâm */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #097073;
-  margin: 0;
-  padding: 0;
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
 }
-.layout{
-  display:flex;
-  width:100%;
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
 }
-.title{
-  justify-content: center;
-  align-items: center;
-  margin-left:60px;
-  margin-right:100px;
-  font-family:Georgia, 'Times New Roman', Times, serif;
-  background-color: rgb(1, 40, 45);
-  border-radius: 8px;
-}	
-.title h1{
-  font-size:40px;
-  font-style:italic;
-  color:#d6e4e5;
-  padding-left: 30px;
-}
-.highlight{
-  color:#0b8185;
-  font-style:normal;
-}
-h2{
-  text-align:center;
-  font-size:14px;
-  color: #dfe4e3;
-  font-weight:bold;
-  background-color:#064556;
-  border: 2.5px solid #000000;
-}
-button{
-  font-size:20px;
-  background-color:#b7dde2;
-}
-input{
-  font-size:16px;
-  background-color:rgb(197, 228, 236);
-  color:#0d0f0e ;
-  text-align:left;
-}
-.lg{
-  margin:0;
-  border:2px solid #000000;
-  padding:18px;
-  box-sizing: border-box;
-  background-color:#b7dde2;
-  position:relative;
-  display:grid;
-  row-gap:6px;
-  margin-right: 76px;
-}
-.lg-box{
-  width:275px;
-  height:300px;
-}
-.submit{
-  color:rgb(5, 4, 4);
-  display:flex;
-  justify-content:center;
-  align-items: center;
-}
-.logoUTH{
-  width:235px;
-}
+
