@@ -1,19 +1,25 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Login from './Login';
-import AdminDashboard from './AdminDashboard';
-import MentorDashboard from './mentorDashboard';
-import UserDashboard from './talentDashboard';
+import Login from './components/Login';
+import ForgotPassword from './components/forgot_password';
+import SystemAdminDashboard from './components/systemadminDashboard';
+import LabAdminDashboard from './components/labadminDashboard';
+import MentorDashboard from './components/mentorDashboard';
+import CandidateDashboard from './components/candidateDashboard';
+import EnterpriseDashboard from './components/enterpriseDashboard';
 import './App.css';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/" element={<Navigate to="/login" />}/>
         <Route path="/login" element={<Login />} />
-        <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/mentor" element={<MentorDashboard />} />
-        <Route path="/dashboard" element={<UserDashboard />} />
+        <Route path="/forgot-password" element={<ForgotPassword/>}/>
+        <Route path="/system_admin" element={<SystemAdminDashboard/>} />
+        <Route path="/lab_admin" element={<LabAdminDashboard/>}/>
+        <Route path="/mentor" element={<MentorDashboard/>} />
+        <Route path="/candidate" element={<CandidateDashboard/>} />
+        <Route path="/enterprise" element={<EnterpriseDashboard/>} />
       </Routes>
     </BrowserRouter>
   );
