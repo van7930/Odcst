@@ -1,30 +1,36 @@
-import { useState,useEffect } from 'react';
+import { useState,useEffect,useRef } from 'react';
 import { Eye, EyeOff} from 'lucide-react';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate,Link} from 'react-router-dom';
 import "./Login.css"
 const accounts = [
-  { email: 'admin@gmail.com', password: '123', role: 'admin', name: 'Admin User' },
-  { email: 'mentor@gmail.com', password: '456', role: 'mentor', name: 'Mentor User' },
-  { email: 'talent@gmail.com', password: '789', role: 'talent', name: 'Student User' },
+  {email:'systemadmin@gmail.com', password:'sys', role:'system_admin', name:'System Admin User'},
+  {email:'labadmin@gmail.com', password:'lab', role:'lab_admin', name:'Lab Admin User'},
+  {email:'mentor@gmail.com', password:'men', role:'mentor', name:'Mentor User'},
+  {email:'candidate@gmail.com', password:'can', role:'candidate', name:'Student User'},
+  {email:'enterprise@gmail.com', password:'ent', role:'enterprise', name:'Enterprise User'},
 ];
 export default function Login(){
     const [email, setEmail] =useState('');
-    const [phone, setPhone] =useState('');
     const [password, setPassword] =useState('');
     const [showPassword, setShowPassword] =useState(false);
     const [error,setError]=useState('');
     const navigate = useNavigate();
+    const passwordRef=useRef();
     useEffect(() => {
     const userData = localStorage.getItem('user');
     if (userData) {
-      const user = JSON.parse(userData);
-      if (user.role === 'admin') {
-        navigate('/admin', { replace: true });
-      } else if (user.role === 'mentor') {
-        navigate('/mentor', { replace: true });
-      } else {
-        navigate('/dashboard', { replace: true });
-      }
+        const user = JSON.parse(userData);
+        if (user.role === 'system_admin') {
+            navigate('/system_admin', { replace: true });
+        } else if (user.role === 'lab_admin') {
+            navigate('/lab_admin', { replace: true });
+        } else if (user.role === 'mentor') {
+            navigate('/mentor', { replace: true });
+        } else if (user.role === 'candidate') {
+            navigate('/candidate', { replace: true });
+        } else {
+            navigate('/dashboard', { replace: true });
+        } 
     }
     }, [navigate]);
     const handleSubmit =(e) =>{
@@ -38,12 +44,16 @@ export default function Login(){
             return;
         }
         localStorage.setItem('user', JSON.stringify(account));
-        if (account.role === 'admin') {
-            navigate('/admin', { replace: true });
+        if (account.role === 'system_admin') {
+            navigate('/system_admin', { replace: true });
+        } else if (account.role === 'lab_admin') {
+            navigate('/lab_admin', { replace: true });
         } else if (account.role === 'mentor') {
             navigate('/mentor', { replace: true });
-        } else if(account.role === 'talent'){
-            navigate('/talent', { replace: true });
+        } else if(account.role === 'candidate'){
+            navigate('/candidate', { replace: true });
+        } else if (account.role === 'enterprise') {
+            navigate('/enterprise', { replace: true });
         }
     };
 
@@ -56,18 +66,25 @@ export default function Login(){
                     </h1>
                 </div>
                 {error && <div className="error-message">{error}</div>}
-                <div onSubmit={handleSubmit} className="login-form">
+                <form onSubmit={handleSubmit} className="login-form">
                     <div className="form">
                         <label htmlfor="email" className="label-form">
-                            Your email address or phone number
+                            Your email address
                         </label>
                         <div className="input-wrapper">
                             <input
                             type ="text"
-                            id="email,phone"
-                            placeholder="email or phone number"
+                            id="email"
+                            placeholder="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
+                            onKeyDown={(e)=>{
+                                if(e.key==='Enter'){
+                                    e.preventDefault();
+                                    passwordRef.current.focus();
+                                }
+                            }
+                            }
                             className="form-input"
                             />
                         </div>
@@ -78,6 +95,7 @@ export default function Login(){
                         </label>
                         <div className="input-wrapper">
                             <input
+                            ref={passwordRef}
                             type={showPassword ? 'text' : 'password'}
                             id="password"
                             placeholder="password"
@@ -95,14 +113,14 @@ export default function Login(){
                         </div>
                     </div>
                     <div className="options">
-                        <a href="#" className="forgot">
+                        <Link to="/forgot-password" className="forgot-link">
                             Forgot password?
-                        </a>
+                        </Link>
                     </div>
                     <button className="submit">
                         Login
                     </button>
-                </div>
+                </form>
             </div>
         </div>
     );
