@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import './Login.css';
+import './forgot_password.css';
 
 export default function ForgotPassword() {
     const [email, setEmail] = useState('');
@@ -39,7 +39,7 @@ export default function ForgotPassword() {
     <div className="login-container">
       <div className="login-card">
         <div className="login-header">
-          <h1 className="login-title">forgot password?</h1>
+          <h1 className="login-title">Forgot password?</h1>
           <p className="login-subtitle">
             please enter your email
           </p>
@@ -47,9 +47,6 @@ export default function ForgotPassword() {
         {error && <div className="error-message">{error}</div>}
         <form onSubmit={handleSubmit} className="login-form">
           <div className="form-group">
-            <label htmlFor="email" className="form-label">
-              Email Address
-            </label>
             <div className="input-wrapper">
               <input
                 type="email"
